@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ import com.koreait.test2.service.MemberJoinService;
 import com.koreait.test2.service.MemberLeaveService;
 import com.koreait.test2.service.MemberLoginService;
 import com.koreait.test2.service.MemberLogoutService;
-
+@Controller
 public class MemberController {
 
 	private SqlSession sqlSession;
@@ -47,7 +48,7 @@ public class MemberController {
 		return "index";
 	}
 	
-	@GetMapping(value = "login.do")
+	@PostMapping(value = "login.do")
 	public String login(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		loginService.execute(sqlSession, model);
